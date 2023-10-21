@@ -17,7 +17,14 @@
  * example: 'Buzz Lightyear' returns 'Lightyear, Buzz'
  */
 function nameShuffle(str) {
-  // write your code here & return value
+  const nameArray = str.split(' ');
+
+  if (nameArray.length >= 2) {
+    const lastName = nameArray.pop();
+    const firstName = nameArray.join(' ');
+    const shuffledName = `${lastName}, ${firstName}`;
+    return shuffledName;
+  }
 }
 
 /**
@@ -35,43 +42,58 @@ function nameShuffle(str) {
  * example: '&', '&' returns true
  */
 function isStrangePair(str1, str2) {
-  // write your code here & return value
+  if (
+    str1.charAt(0) === str2.charAt(str2.length - 1)
+    && str2.charAt(0) === str1.charAt(str1.length - 1)
+  ) {
+    return true;
+  }
+  return false;
 }
 
 /**
- * Returns the number from a string with a % sign at the end
- * @param {string} percent - string with an ending % character
- * @returns {number} - the number of the percent
- * example: '10%' returns 0.1
- * example: '100%' returns 1
- * example: '98.6%' returns 0.986
- */
+   * Returns the number from a string with a % sign at the end
+   * @param {string} percent - string with an ending % character
+   * @returns {number} - the number of the percent
+   * example: '10%' returns 0.1
+   * example: '100%' returns 1
+   * example: '98.6%' returns 0.986
+   */
 function convertToDecimal(percent) {
-  // write your code here & return value
+  const number = parseFloat(percent.replace('%', ''));
+  // eslint-disable-next-line no-restricted-globals
+  if (!isNaN(number)) {
+    return number / 100;
+  }
 }
 
 /**
- * Returns true if two arrays sum up to the same number
- * @param {array} a1 - first array of numbers to compare
- * @param {array} a2 - second array of numbers to compare
- * @returns {boolean}
- * example: [1, 2, 3, 4], [4, 3, 2, 1] returns true
- * example: [0, 0, 0, 0, 0], [1, 1, 1, 1] returns false
- * example: [1, 2, 3, 4], [4, 3, 2, 1, 5] returns false
- */
+   * Returns true if two arrays sum up to the same number
+   * @param {array} a1 - first array of numbers to compare
+   * @param {array} a2 - second array of numbers to compare
+   * @returns {boolean}
+   * example: [1, 2, 3, 4], [4, 3, 2, 1] returns true
+   * example: [0, 0, 0, 0, 0], [1, 1, 1, 1] returns false
+   * example: [1, 2, 3, 4], [4, 3, 2, 1, 5] returns false
+   */
 function checkSameSum(a1, a2) {
-  // write your code here & return value
+  const sumA1 = a1.reduce((acc, val) => acc + val, 0);
+  const sumA2 = a2.reduce((acc, val) => acc + val, 0);
+  return sumA1 === sumA2;
 }
 
 /**
- * Saves the username for later use
- * @param {string} name - a username
- * @returns {function} - a function that returns the username
- * example: saveUsername('John') returns a function that returns 'John'
- * must use a closure to save the username
- */
+   * Saves the username for later use
+   * @param {string} name - a username
+   * @returns {function} - a function that returns the username
+   * example: saveUsername('John') returns a function that returns 'John'
+   * must use a closure to save the username
+   */
 function saveLogin(name) {
-  // write your code here
+  function getUsername() {
+    return name;
+  }
+  return getUsername;
 }
 
 module.exports = {
